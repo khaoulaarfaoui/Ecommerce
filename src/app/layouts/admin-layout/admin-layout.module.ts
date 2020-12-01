@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AppModule} from '../../app.module';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
         MatSelectModule,
         MatTooltipModule,
         NgbModule,
+        AppModule,
     ],
   declarations: [
     DashboardComponent,

@@ -87,24 +87,59 @@
         <div class="card-header card-header-danger">
             <h4 class="card-title">ALSO AVAILABLE</h4>
         </div>
-        <div class="row">
-            <div class="col-md-4">
+<br>
+<br>
+        <div class=" justify-content-end">
+            <form class="navbar-form" #f="ngForm" (ngSubmit)="Onchercher(f.value)">
+                <div class="input-group" style="width: 250px;">
+                    <input type="text" value="Search" name="keyword" ngModel class="form-control" placeholder="Search...">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    <div *ngIf="products">
+        <div class="row" >
+            <div class="col-md-4" *ngFor="let p of products._embedded.products; let i = index" #i>
                 <div class="card card-chart">
                     <div class="card-header">
-                        <img style="width: 350px;padding: 15px;height: 270px;margin-top: -40px;"
-                             src="assets/img/clothes/tshirt2.jpg">
+                        <app-product-item
+                                [idProduct]="p.id"></app-product-item>
+                       <!-- <img style="width: 350px;padding: 15px;height: 270px;margin-top: -40px;"
+                             img [src]="retrievedImage">
+                             -->
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">WHITE T-SHIRT <small class="text-success"> 5% </small> <small
+                        <h4 class="card-title">{{p.title}} <small class="text-success"> 5% </small> <small
                                 class="card-category">Sale</small></h4>
                         <span class="card-category">
-                          White tshirt from the brand ZARA.<br>
+                        {{p.description}}.<br>
                           Sizes available:  <br>
-                          <span style="color: black; font-size: 10px"> XS  -  S  -  M   -  XL  </span>
+                          <span style="color: black; font-size: 10px"> {{p.availableSize}}  </span>
                       </span>
+                    </div>
+                    <div class="card-footer">
+                            <button class="btn btn-danger btn-just-icon">
+                            <span (click)="like(p)" class="material-icons icon-image-preview">favorite</span>
+                            </button>
+                        <button href="" class="btn btn-success" (click)="addtocart(p)">Add to Cart</button>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    </div>
+    <ul *ngIf="pages" class="nav nav-pills" style="margin-right: 0px">
+        <li *ngFor="let p of pages; let i=index" class="nav-item">
+            <a (click)="OnPageProduct(i)" class="nav-link" data-toggle="pill">{{i+1}}</a>
+        </li>
+    </ul>
+</div>
+
+            <!--
             <div class="col-md-4">
                 <div class="card card-chart">
                     <div class="card-header">
@@ -296,3 +331,5 @@
     </div>
 
 </div>
+-->
+

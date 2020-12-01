@@ -4,20 +4,28 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {CartComponent} from './cart/cart.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {ProfileComponent} from './profile/profile.component';
+import {FiletestComponent} from './filetest/filetest.component';
 
 const routes: Routes =[
   {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-    }]
-  }
+    path: 'dashboard',
+    component: DashboardComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent
+  },
+  { path: 'file', component: FiletestComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
 ];
 
 @NgModule({

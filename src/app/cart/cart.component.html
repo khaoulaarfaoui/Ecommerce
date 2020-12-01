@@ -1,0 +1,29 @@
+
+<div *ngIf="cartproducts">
+    <div class="flex-column" >
+        <div class="col-md-8" *ngFor="let p of cartproducts">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <img style="width: 350px;padding: 15px;height: 270px;margin-top: -40px;"
+                         src="assets/img/clothes/tshirt2.jpg">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{p.title}} <small class="text-success"> 5% </small> <small
+                            class="card-category">Sale</small></h4>
+                    <span class="card-category">
+                        {{p.description}}.<br>
+                          Sizes available:  <br>
+                          <span style="color: black; font-size: 10px"> {{p.availableSize}}  </span>
+                      </span>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger btn-just-icon">
+                        <span (click)="like(p)" class="material-icons icon-image-preview">favorite</span>
+                    </button>
+                    <button href="" class="btn btn-success" (click)="addtocart(p)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
