@@ -1,7 +1,10 @@
 
-<div *ngIf="cartproducts">
-    <div class="flex-column" >
-        <div class="col-md-8" *ngFor="let p of cartproducts">
+<div class="main-content">
+    <div class="container-fluid">
+
+<div  *ngIf="cartproducts && isLoggedIn">
+    <div class="flex-column"  >
+        <div class="col-md-5" *ngFor="let p of cartproducts;">
             <div class="card card-chart">
                 <div class="card-header">
                     <img style="width: 350px;padding: 15px;height: 270px;margin-top: -40px;"
@@ -17,13 +20,24 @@
                       </span>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-danger btn-just-icon">
-                        <span (click)="like(p)" class="material-icons icon-image-preview">favorite</span>
-                    </button>
-                    <button href="" class="btn btn-success" (click)="addtocart(p)">Add to Cart</button>
+                    <button href="" class="btn btn-danger" (click)="Deletecart(p)">Delete from Cart</button>
+
+                    <button mat-button type="button" (click)="increment()"><i class="material-icons" style="color: black">add_box</i>{{this.count}}</button>
                 </div>
             </div>
         </div>
+        <button  class="btn btn-success" routerLink="/payment">Proceed to payment</button>
     </div>
 </div>
 
+<div  *ngIf=" !isLoggedIn">
+    <div class="alert alert-danger">
+        <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="material-icons">close</i>
+        </button>
+        <span>
+            <b> LOG IN PLEASE - </b> Please Login in order to continue to paiment</span>
+    </div>
+ </div>
+    </div>
+</div>

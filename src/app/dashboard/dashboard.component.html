@@ -107,15 +107,13 @@
                 <div class="card card-chart">
                     <div class="card-header">
                         <app-product-item
-                                [idProduct]="p.id"></app-product-item>
-                       <!-- <img style="width: 350px;padding: 15px;height: 270px;margin-top: -40px;"
-                             img [src]="retrievedImage">
-                             -->
+                                [idProduct]="p._links.fileDB.href"></app-product-item>
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">{{p.title}} <small class="text-success"> 5% </small> <small
                                 class="card-category">Sale</small></h4>
                         <span class="card-category">
+
                         {{p.description}}.<br>
                           Sizes available:  <br>
                           <span style="color: black; font-size: 10px"> {{p.availableSize}}  </span>

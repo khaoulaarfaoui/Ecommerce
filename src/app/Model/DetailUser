@@ -1,0 +1,13 @@
+export class DetailUser{
+    id: number;
+    FirstName: string;
+    LastName: string;
+    Address: string;
+    City: string;
+    Country: string;
+    PostalCode: number;
+    AboutMe: string;
+
+}
+
+

@@ -36,7 +36,7 @@ import {AppModule} from '../../app.module';
         AppModule,
     ],
   declarations: [
-    DashboardComponent,
+
     UserProfileComponent,
     TableListComponent,
     TypographyComponent,

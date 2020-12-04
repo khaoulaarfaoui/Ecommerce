@@ -1,0 +1,14 @@
+{
+  "usersDetails": [
+    {
+      "id": 1,
+      "FirstName": "duncan",
+      "LastName": "duncan",
+      "Address": "duncan",
+      "City": "duncan",
+      "Country": "australia",
+      "PostalCode": "123",
+      "AboutMe" : "testing"
+    }
+    ]
+}

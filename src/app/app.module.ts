@@ -66,6 +66,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FiletestComponent } from './filetest/filetest.component';
 import { ProductItemComponent } from './product-item/product-item.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   imports: [
@@ -126,7 +127,8 @@ import { ProductItemComponent } from './product-item/product-item.component';
     ProfileComponent,
     HomeComponent,
     FiletestComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    PaymentComponent
 
   ],
   providers: [authInterceptorProviders],

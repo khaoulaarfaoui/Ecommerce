@@ -5,6 +5,7 @@ import {ServiceProductService} from '../shared/service-product.service';
 import {DisplayService} from '../shared/display.service';
 import * as EventEmitter from 'events';
 import {CartService} from '../shared/cart.service';
+import {TokenStorageService} from '../services/token-storge.service';
 
 @Component({
   selector: 'app-navbar',
@@ -25,11 +26,28 @@ export class NavbarComponent implements OnInit {
     public pages:Array<number>;
     count: number;
     cartproducts=[];
-    constructor(private cartService : CartService,private productservice: ServiceProductService, private displayservice: DisplayService) {
+    private roles: string[];
+    isLoggedIn = false;
+    showAdminBoard = false;
+    showModeratorBoard = false;
+    username: string;
+    constructor(private tokenStorageService: TokenStorageService,private cartService : CartService,private productservice: ServiceProductService, private displayservice: DisplayService) {
 
     }
 
     ngOnInit() {
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+        if (this.isLoggedIn) {
+            const user = this.tokenStorageService.getUser();
+            this.roles = user.roles;
+
+            this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+            this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+            this.username = user.username;
+        }
+
         this.productservice.getProduct(this.currentPage, this.size).subscribe(
             data => {
                 this.totalPages = data['page'].totalPages;
@@ -44,7 +62,10 @@ export class NavbarComponent implements OnInit {
         });
         this.cartproducts = this.cartService.getProducts();
     }
-
+    logout() {
+        this.tokenStorageService.signOut();
+        window.location.reload();
+    }
     Onchercher(form: any) {
 
         this.productservice.getProductByKey(form.keyword,this.currentPage, this.size).subscribe(

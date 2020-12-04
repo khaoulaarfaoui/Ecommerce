@@ -11,6 +11,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {FiletestComponent} from './filetest/filetest.component';
+import {PaymentComponent} from './payment/payment.component';
 
 const routes: Routes =[
   {
@@ -21,6 +22,7 @@ const routes: Routes =[
     path: 'cart',
     component: CartComponent
   },
+  { path: 'payment', component: PaymentComponent },
   { path: 'file', component: FiletestComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },

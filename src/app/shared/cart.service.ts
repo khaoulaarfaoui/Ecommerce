@@ -12,4 +12,11 @@ export class CartService {
   getProducts(){
     return this.products
   }
+  delete(p){
+    this.products.splice(this.products.indexOf(p),1);
+  }
+  clearCart() {
+    this.products = [];
+    return this.products;
+  }
 }
