@@ -2,13 +2,43 @@
   "usersDetails": [
     {
       "id": 1,
-      "FirstName": "duncan",
-      "LastName": "duncan",
-      "Address": "duncan",
-      "City": "duncan",
-      "Country": "australia",
+      "FirstName": "Khaoula",
+      "LastName": "Arfaoui",
+      "Address": "41, rue Abed El Waheb BEB MNARA",
+      "City": "Tunis",
+      "Country": "Tunisia",
       "PostalCode": "123",
-      "AboutMe" : "testing"
+      "AboutMe": "Khaoula is a nice and smart girl"
+    },
+    {
+      "id": 2,
+      "FirstName": "Emir",
+      "LastName": "BHY",
+      "Address": "41, rue Tribunal Paris",
+      "City": "Paris",
+      "Country": "France",
+      "PostalCode": "123",
+      "AboutMe": "Emir is a nice and smart boyy"
+    },
+    {
+      "FirstName": "khaoula",
+      "LastName": "arfaoui",
+      "Address": "km) 1001 Avenue Mohamed 5",
+      "City": "تونس",
+      "Country": "Tunisia",
+      "PostalCode": "1001",
+      "AboutMe": "aaaaa",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "FirstName": "Charifa",
+      "LastName": "Khriji",
+      "Address": "41 rue Tofeha, Bardo",
+      "City": "Tunis",
+      "Country": "Tunisia",
+      "PostalCode": "123",
+      "AboutMe": "Charifa is a nice girl"
     }
-    ]
+  ]
 }

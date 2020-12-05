@@ -1,4 +1,4 @@
-export class DetailUser{
+export interface Userdetails {
     id: number;
     FirstName: string;
     LastName: string;
@@ -7,7 +7,4 @@ export class DetailUser{
     Country: string;
     PostalCode: number;
     AboutMe: string;
-
 }
-
-

@@ -13,7 +13,7 @@ import {TokenStorageService} from '../services/token-storge.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    @Output() public found = new EventEmitter<any>();
+
     private listTitles: any[];
     location: Location;
       mobile_menu_visible: any = 0;
