@@ -69,6 +69,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { PaymentComponent } from './payment/payment.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { NewsletterComponent } from './newsletter/newsletter.component';
 @NgModule({
   imports: [
     CdkTreeModule,
@@ -114,7 +115,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     MatDialogModule,
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+      apiKey: ''
     }),
   ],
   declarations: [
@@ -129,7 +130,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     HomeComponent,
     FiletestComponent,
     ProductItemComponent,
-    PaymentComponent
+    PaymentComponent,
+    NewsletterComponent
 
   ],
   providers: [authInterceptorProviders],

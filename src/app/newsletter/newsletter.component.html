@@ -1,0 +1,77 @@
+<div class="main-content">
+    <div class="row justify-content-right">
+    <div class="col-lg-6">
+    <div class="card shadow">
+        <div class="card-header card-header-success">
+            <h4 class="card-title">GET IN TOUCH WITH US</h4>
+            <p class="card-category">YOUR FEEDBACK IS IMPORTANT!</p>
+        </div>
+        <div class="card-body px-lg-9 py-lg-9">
+            <div class="text-center text-muted mb-4">
+            </div>
+            <br>
+            <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+
+                <div class="form-group mb-3" [ngClass]="{'focused':focus2===true}">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Nom" name="name" ngModel  #name="ngModel" type="text" (focus)="focus2=true" (blur)="focus2=false" required>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
+                        Le champs nom est obligatoire
+                    </div>
+                </div>
+                <div class="form-group mb-3" [ngClass]="{'focused':focus5===true}">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-square-pin"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Adresse" type="text" value="{{this.coordinates}}" name="addresse" ngModel  #addresse="ngModel" (focus)="focus5=true" (blur)="focus5=false" required>
+                    </div>
+                </div>
+                <div class="form-group mb-3" [ngClass]="{'focused':focus6===true}">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Email" type="email" name="email" ngModel required #email="ngModel"   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                               (focus)="focus6=true" (blur)="focus6=false" >
+                    </div>
+                    <div>
+                        <span class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Le champs email est obligatoire</span>
+                        <span class="alert alert-danger" *ngIf="email.touched && email.errors?.pattern">un email doit etre sous la forme de xyz@xyz.com</span>
+                    </div>
+                </div>
+                <div class="form-group mb-3" [ngClass]="{'focused':focus1===true}">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-single-copy-04"></i></span>
+                        </div>
+                        <textarea class="form-control" placeholder="Message"  name="messages" ngModel required #messages="ngModel" (focus)="focus1=true" (blur)="focus1=false" > </textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <button class="btn-outline-warning" (click)="reset(contactForm)">Annuler</button>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button class="btn-neutral" type="submit" [disabled]="!contactForm.valid">Send</button>
+                    </div>
+                </div>
+            </form>
+            <div class="alert alert-success alert-dismissible" *ngIf="sent">Sent</div>
+        </div>
+    </div>
+    </div>
+    <div class="col-lg-4">
+
+        <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+</div>
+</div>
+</div>
+

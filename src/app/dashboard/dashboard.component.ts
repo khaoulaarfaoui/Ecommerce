@@ -86,4 +86,8 @@ num:number=0;
     onItemLabelLoaded($event: any) {
         
     }
+
+    addToSummary(content: any) {
+        content.isSelected = true;
+    }
 }

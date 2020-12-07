@@ -2,7 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TokenStorageService} from '../services/token-storge.service';
 import {UserDetailsService} from '../shared/user-details.service';
 import {Userdetails} from '../Models/userdetails';
-import {MatDialogRef} from '@angular/material/dialog';
+import {  Router } from '@angular/router';
+
 
 
 
@@ -14,10 +15,11 @@ import {MatDialogRef} from '@angular/material/dialog';
 export class ProfileComponent implements OnInit {
   currentUser: any;
   DetailUser: Userdetails;
+  id=3;
   @Input() userDetails = { FirstName: '',LastName: '', Address: '',City: '',Country: '', PostalCode:0, AboutMe: '' }
   update=false;
   deletevar=false;
-  constructor(private userdetailsservice: UserDetailsService, private token: TokenStorageService) { }
+  constructor( private router: Router, private userdetailsservice: UserDetailsService, private token: TokenStorageService) { }
 
   ngOnInit() {
     this.currentUser = this.token.getUser();
@@ -33,7 +35,12 @@ export class ProfileComponent implements OnInit {
   }
 
   delete() {
-    this.deletevar=true;
+
+    if (window.confirm('Are you sure, you want to delete?')){
+      this.userdetailsservice.delete(this.id).subscribe(data => {
+        this.router.navigate(['/dashboard'])
+      })
+    }
   }
 
   updateprofile() {

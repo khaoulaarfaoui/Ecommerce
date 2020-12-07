@@ -9,52 +9,25 @@ import { DomSanitizer, SafeResourceUrl,  SafeHtml } from '@angular/platform-brow
   styleUrls: ['./filetest.component.css']
 })
 export class FiletestComponent implements OnInit {
- /* fileInfos: Observable<any>;
-  selectedFile: File;
-  public retrievedImage: any;
-  base64Data: any;
-  retrieveResonse: any;
-  message: string;
-  imageName: string= 'avatar';
-  srcData : SafeResourceUrl;
-
-  constructor(private sanitizer: DomSanitizer, private http: HttpClient, private uploadService: UploadFileService) { }
-  ngOnInit(): void {
-
-    this.fileInfos = this.uploadService.getFiles();
+    ngOnInit() {
     }
-  getImage(imageName: string) {
-    console.log('testttttttt');
-    this.http.get(`http://localhost:8087/get/`+this.imageName)
-        .subscribe(
-            res => {
-              console.log('testttttttt');
-              this.retrieveResonse = res;
-              console.log(res);
-              this.base64Data = this.retrieveResonse.data;
-              this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-            }
-        );
 
-        }
-        */
-    constructor(private sanitizer: DomSanitizer,private httpClient: HttpClient , private uploadService: UploadFileService) { }
+    constructor(private httpClient: HttpClient) { }
+
     selectedFile: File;
     retrievedImage: any;
     base64Data: any;
     retrieveResonse: any;
     message: string;
     imageName: any;
-    fileInfos: Observable<any>;
-    ngOnInit(): void {
-        this.fileInfos = this.uploadService.getFiles();
 
-    }
     //Gets called when the user selects an image
     public onFileChanged(event) {
         //Select File
         this.selectedFile = event.target.files[0];
     }
+
+
     //Gets called when the user clicks on submit to upload the image
     onUpload() {
         console.log(this.selectedFile);
@@ -73,19 +46,20 @@ export class FiletestComponent implements OnInit {
                     }
                 }
             );
+
+
     }
+
     //Gets called when the user clicks on retieve image button to get the image from back end
     getImage() {
         //Make a call to Sprinf Boot to get the Image Bytes.
-        this.httpClient.get('http://localhost:8087/image/getimagebyid/' + 1)
+        this.httpClient.get('http://localhost:8087/image/get/' + this.imageName)
             .subscribe(
                 res => {
                     this.retrieveResonse = res;
                     this.base64Data = this.retrieveResonse.picByte;
-                    this.retrievedImage= this.sanitizer.bypassSecurityTrustUrl(`data:image/png;base64,${this.base64Data}`);
-                    //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+                    this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
                 }
             );
     }
-
 }

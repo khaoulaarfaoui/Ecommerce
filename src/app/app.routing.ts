@@ -10,6 +10,8 @@ import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {FiletestComponent} from './filetest/filetest.component';
 import {PaymentComponent} from './payment/payment.component';
+import {NewsletterComponent} from './newsletter/newsletter.component';
+
 
 const routes: Routes =[
   {
@@ -19,6 +21,11 @@ const routes: Routes =[
   {
     path: 'cart',
     component: CartComponent
+  },
+
+  {
+    path: 'newsletter',
+    component: NewsletterComponent
   },
   { path: 'payment', component: PaymentComponent },
   { path: 'file', component: FiletestComponent },

@@ -21,10 +21,10 @@
     <br>
 
     <div class="container-fluid">
-        <section id="aaaa" style="width: 85%;position: center;margin: auto; ">
+        <section id="bestSeller">
             <div id="typography">
                 <div class="card-title">
-                    <h2>BEST SELLER</h2>
+                    <h2>BEST SELLER OF THE WEEK !</h2>
                 </div>
             </div>
             <div class="row">
@@ -32,13 +32,13 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-rose card-header-icon">
                             <div class="card-icon">
-                                <img class="zoom" style="width: 150px; height: 150px" src="assets/img/clothes/dress.jpg">
+                                <img  class="zoom bestsellerimg" src="assets/img/clothes/dress.jpg">
                             </div>
                         </div>
                         <div class="card-header">
                             dress on sale! hurry up
                         </div>
-                        <h3 class="card-body" style="font-size: 3rem; padding-top: inherit">$34</h3>
+                        <h3 class="card-body" style="font-size: 3rem; padding-top: inherit">34 DT</h3>
                     </div>
                 </div>
 
@@ -46,52 +46,50 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-warning card-header-icon">
                             <div class="card-icon">
-                                <img class="zoom" style="width: 150px; height: 150px" src="assets/img/clothes/sneakers2.jpg">
+                                <img  class="bestsellerimg zoom" src="assets/img/clothes/sneakers2.jpg">
                             </div>
                         </div>
                         <div class="card-header">
                             sneakers on sale! hurry up
                         </div>
 
-                        <h3 class="card-body" style="font-size: 3rem; padding-top: inherit;">$34</h3>
+                        <h3 class="card-body" style="font-size: 3rem; padding-top: inherit;">14 DT</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-2 col-sm-3">
                     <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">
-                                <img class="zoom" style="width: 150px; height: 150px" src="assets/img/clothes/tshirt.jpg">
+                                <img class="zoom bestsellerimg"  src="assets/img/clothes/tshirt.jpg">
                             </div>
                         </div>
                         <div class="card-header">
                             tshirt on sale! hurry up
                         </div>
-                        <h3 class="card-body" style="font-size: 3rem; padding-top: inherit;">$34</h3>
+                        <h3 class="card-body" style="font-size: 3rem; padding-top: inherit;">19 DT</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-2 col-sm-3">
                     <div class="card card-stats">
                         <div class="card-header card-header-info card-header-icon">
                             <div class="card-icon">
-                                <img class="zoom" style="width: 150px; height: 150px" src="assets/img/clothes/tshirt2.jpg">
+                                <img class="zoom bestsellerimg"  src="assets/img/clothes/tshirt2.jpg">
                             </div>
                         </div>
                         <div class="card-header">
                             tshirt on sale! hurry up
                         </div>
-                        <h3 class="card-body" style="font-size: 3.0rem; padding-top: inherit;">$34</h3>
+                        <h3 class="card-body" style="font-size: 3.0rem; padding-top: inherit;">50 DT</h3>
                     </div>
                 </div>
             </div>
         </section>
-        <div class="card-header card-header-danger">
-            <h4 class="card-title">ALSO AVAILABLE</h4>
-        </div>
+
 <br>
 <br>
         <div class=" justify-content-end">
             <form class="navbar-form" #f="ngForm" (ngSubmit)="Onchercher(f.value)">
-                <div class="input-group" style="width: 250px;">
+                <div class="input-group" style="width: 500px;">
                     <input type="text" value="Search" name="keyword" ngModel class="form-control" placeholder="Search...">
                     <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
                         <i class="material-icons">search</i>
@@ -107,21 +105,24 @@
                 <div class="card card-chart">
                     <div class="card-header">
                         <app-product-item
+                                [prod]="p.id"
                                 [idProduct]="p._links.fileDB.href"></app-product-item>
+
                     </div>
+
                     <div class="card-body">
+                        <h1 class="card-title">{{p.price}}  DT</h1>
                         <h4 class="card-title">{{p.title}} <small class="text-success"> 5% </small> <small
                                 class="card-category">Sale</small></h4>
                         <span class="card-category">
-
                         {{p.description}}.<br>
                           Sizes available:  <br>
                           <span style="color: black; font-size: 10px"> {{p.availableSize}}  </span>
                       </span>
                     </div>
                     <div class="card-footer">
-                            <button class="btn btn-danger btn-just-icon">
-                            <span (click)="like(p)" class="material-icons icon-image-preview">favorite</span>
+                            <button class="btn btn-dark btn-just-icon">
+                            <span  class="material-icons icon-image-preview" [style.color]="p.isSelected ? '#D94261' : 'FFFFFF'" (click)="addToSummary(p)">favorite</span>
                             </button>
                         <button href="" class="btn btn-success" (click)="addtocart(p)">Add to Cart</button>
                     </div>

@@ -9,7 +9,10 @@ import {DomSanitizer} from '@angular/platform-browser';
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
+ //this is the href for the photo
   @Input() idProduct: string;
+//this is the ID of the product
+  @Input() prod: number;
   selectedFile: File;
   retrievedImage: any;
   base64Data: any;
@@ -24,7 +27,7 @@ export class ProductItemComponent implements OnInit {
      ngOnInit() :void {
         // (async () => {
              //this.id = await this.getimage();
-             this.http.get('http://localhost:8087/products/1/fileDB')
+             this.http.get('http://localhost:8087/products/'+ this.prod +'/fileDB')
                  .subscribe(res => {
                      this.image = res;
                      this.id=this.image.id;
@@ -47,8 +50,6 @@ getUrl(){
     console.log("outside the URL function"+this.id)
 }
 getimage() {
-    console.log("outside the get Image function"+this.id)
-
             //Make a call to Spring Boot to get the Image Bytes.
   this.http.get('http://localhost:8087/image/getimagebyid/'+this.id)
       .subscribe(
