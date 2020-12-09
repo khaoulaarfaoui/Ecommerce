@@ -11,12 +11,10 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
+
+
+
+
 import {
   AgmCoreModule
 } from '@agm/core';
@@ -30,7 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
+
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { PortalModule } from '@angular/cdk/portal';
@@ -69,7 +67,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { PaymentComponent } from './payment/payment.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
-import { NewsletterComponent } from './newsletter/newsletter.component';
+import { NewsletterComponent } from './contactUs/newsletter.component';
 @NgModule({
   imports: [
     CdkTreeModule,
@@ -127,7 +125,6 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    HomeComponent,
     FiletestComponent,
     ProductItemComponent,
     PaymentComponent,

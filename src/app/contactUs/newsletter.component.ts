@@ -8,15 +8,17 @@ import {NgForm} from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {GeoLocationServiceService} from '../shared/geo-location-service.service';
-
-
-
+import {NavbarService} from '../shared/navbar.service';
 
 @Component({
   selector: 'app-newsletter',
   templateUrl: './newsletter.component.html',
   styleUrls: ['./newsletter.component.css']
 })
+
+/*
+    THIS IS A CONTACT US COMPONENT WHERE WE WILL USE TEMPLATE POWERED FORM AND BACKEND AS A SERVICE
+ */
 export class NewsletterComponent implements OnInit {
 
   title = 'My first AGM project';
@@ -41,11 +43,10 @@ export class NewsletterComponent implements OnInit {
   coordinates;
 
 
-  constructor( private mapsAPILoader: MapsAPILoader,private http: HttpClient, private geoService: GeoLocationServiceService) {
+  constructor( public nav: NavbarService, private mapsAPILoader: MapsAPILoader,private http: HttpClient, private geoService: GeoLocationServiceService) {
   }
-
-
   ngOnInit() {
+    this.nav.show();
    this.getCurrentLocation();
   }
 

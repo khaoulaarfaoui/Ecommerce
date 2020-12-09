@@ -1,9 +1,32 @@
-<div class="col-md-4">
-    <h2>PayU Payment Form</h2>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+            <div class="col-sm" *ngFor="let p of cartproducts;">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <app-product-item
+                                [prod]="p.id"
+                                [idProduct]="p._links.fileDB.href"></app-product-item>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{p.title}} </h4>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+
+<div class="col-md-6 col-sm">
+    <br>
+    <br>
+    <br>
+    <h1>Payment Information</h1>
     <form ngNoForm action="https://test.payu.in/_payment" name="payuform" method="POST" target="payment_popup"  onsubmit="window.open('about:blank','payment_popup','width=900,height=500');">
         <div class="form-group">
-            <label for="productInfo">Product Name:</label>
-            <input type="text" class="form-control" id="productInfo" name="productinfo" [(ngModel)]="payuform.productinfo">
+            <label for="productInfo">Items:</label>
+            <input type="text" class="form-control" id="productInfo" name="productinfo"  [(ngModel)]="this.titles">
+
         </div>
         <div class="form-group">
             <label for="firstname">Name:</label>
@@ -19,7 +42,7 @@
         </div>
         <div class="form-group">
             <label for="amount">Amount:</label>
-            <input type="number" class="form-control" id="amount" name="amount" [(ngModel)]="payuform.amount">
+            <input type="number" class="form-control" id="amount" name="amount" [(ngModel)]="this.price">
         </div>
         <textarea name="surl" id="surl" ng-model="surl" rows="2" cols="2" hidden [(ngModel)]="payuform.surl"></textarea>
         <textarea name="furl" id="furl" ng-model="furl" rows="2" cols="2" hidden [(ngModel)]="payuform.furl"></textarea>
@@ -30,4 +53,7 @@
         <button *ngIf="disablePaymentButton" type="button"  class="btn btn-default" (click)="confirmPayment()">Confirm</button>
         <button *ngIf="!disablePaymentButton" type="submit" class="btn btn-danger">Submit</button>
     </form>
+</div>
+</div>
+    </div>
 </div>

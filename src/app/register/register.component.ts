@@ -1,32 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../shared/auth.service';
 
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
+    /* REGISTER IF NOT LOGGED IN COMPONENT
+    USING SPRING BOOT BACK END AND JWT AUTHENTICATION BACKEND
+    AND TEMPLATE DRIVEN FORM
+     */
 export class RegisterComponent implements OnInit {
-  form: any = {};
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
-  constructor(private authService: AuthService) { }
-  ngOnInit() {
-  }
+    form: any = {};
+    isSuccessful = false;
+    isSignUpFailed = false;
+    errorMessage = '';
 
-  onSubmit() {
-    this.authService.register(this.form).subscribe(
-        data => {
-          console.log(data);
-          this.isSuccessful = true;
-          this.isSignUpFailed = false;
-        },
-        err => {
-          this.errorMessage = err.error.message;
-          this.isSignUpFailed = true;
-        }
-    );
-  }
+    constructor(private authService: AuthService) {
+    }
+
+    ngOnInit() {
+    }
+
+    onSubmit() {
+        this.authService.register(this.form).subscribe(
+            data => {
+                console.log(data);
+                this.isSuccessful = true;
+                this.isSignUpFailed = false;
+            },
+            err => {
+                this.errorMessage = err.error.message;
+                this.isSignUpFailed = true;
+            }
+        );
+    }
 }

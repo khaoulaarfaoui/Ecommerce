@@ -3,12 +3,14 @@
     <div class="container-fluid">
 
 <div  *ngIf="cartproducts && isLoggedIn">
-    <div class="flex-column"  >
-        <div class="col-md-5" *ngFor="let p of cartproducts;">
+    <div class="row"  >
+        <div class="col-md-3" *ngFor="let p of cartproducts;">
             <div class="card card-chart">
                 <div class="card-header">
-                    <img style="width: 350px;padding: 15px;height: 270px;margin-top: -40px;"
-                         src="assets/img/clothes/tshirt2.jpg">
+                    <app-product-item
+                    [prod]="p.id"
+                    [idProduct]="p._links.fileDB.href"></app-product-item>
+
                 </div>
                 <div class="card-body">
                     <h4 class="card-title">{{p.title}} <small class="text-success"> 5% </small> <small
@@ -20,14 +22,18 @@
                       </span>
                 </div>
                 <div class="card-footer">
+                    <!--
+                    <button mat-button type="button" (click)="increase(p)"><i class="material-icons" style="color: black">add_box</i></button>
+                    <button mat-button type="button" (click)="decrease(p)"><i class="material-icons" style="color: black">minimize</i></button>
+                -->
                     <button href="" class="btn btn-danger" (click)="Deletecart(p)">Delete from Cart</button>
 
-                    <button mat-button type="button" (click)="increment()"><i class="material-icons" style="color: black">add_box</i>{{this.count}}</button>
                 </div>
             </div>
         </div>
-        <button  class="btn btn-success" routerLink="/payment">Proceed to payment</button>
+
     </div>
+    <button  class="btn btn-success" routerLink="/payment">Proceed to payment</button>
 </div>
 
 <div  *ngIf=" !isLoggedIn">

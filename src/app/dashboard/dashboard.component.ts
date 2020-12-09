@@ -8,22 +8,25 @@ import {NotificationsService} from '../shared/notifications.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {DomSanitizer} from '@angular/platform-browser';
-
+import {NavbarService} from '../shared/navbar.service';
+/*
+    THIS COMPONENT IS OUR HOME PAGE WHERE THE USER WILL FIND ALL THE ITEMS
+ */
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-public products: any;
-public size:number=6;
-public currentPage:number=0;
-public totalPages: number;
-public pages:Array<number>;
-page1:1;
-public key:string='test';
-currentKeyword:string="";
-num:number=0;
+    public products: any;
+    public size: number = 6;
+    public currentPage: number = 0;
+    public totalPages: number;
+    public pages: Array<number>;
+    page1: 1;
+    public key: string = 'test';
+    currentKeyword: string = '';
+    num: number = 0;
 //added
     selectedFile: File;
     retrievedImage: any;
@@ -34,43 +37,63 @@ num:number=0;
     fileInfos: Observable<any>;
 
 
-    constructor(private sanitizer: DomSanitizer,private http: HttpClient, private notifyservice: NotificationsService ,private cartservice: CartService, private productservice: ServiceProductService,private displayservice: DisplayService) { }
-  ngOnInit(){
-      this.OnGetProduct();
+    constructor(public nav: NavbarService, private sanitizer: DomSanitizer, private http: HttpClient, private notifyservice: NotificationsService, private cartservice: CartService, private productservice: ServiceProductService, private displayservice: DisplayService) {
+    }
+
+    ngOnInit() {
+        this.nav.show();
+        this.OnGetProduct();
 
 
-  }
-    getImage(i: any) {
+    }
+
+   /* getImage(i: any) {
         //Make a call to Sprinf Boot to get the Image Bytes.
-        this.http.get('http://localhost:8087/image/getimagebyid/'+i)
+        this.http.get('http://localhost:8087/image/getimagebyid/' + i)
             .subscribe(
                 res => {
                     this.retrieveResonse = res;
                     this.base64Data = this.retrieveResonse.picByte;
-                    this.retrievedImage= this.sanitizer.bypassSecurityTrustUrl(`data:image/png;base64,${this.base64Data}`);
+                    this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(`data:image/png;base64,${this.base64Data}`);
                     //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
                 }
             );
+    }*/
+//GETTING THE PRODUCT FROM THE SPRING BOOT BACKEND
+    OnGetProduct() {
+        this.productservice.getProduct(this.currentPage, this.size).subscribe(data => {
+                this.totalPages = data['page'].totalPages;
+                this.pages = new Array<number>(this.totalPages);
+                this.products = data;
+            },
+            err => {
+                console.log(err);
+            });
     }
-  OnGetProduct() {
-      this.productservice.getProduct(this.currentPage, this.size).subscribe(data => {this.totalPages=data['page'].totalPages;
-      this.pages=new Array<number>(this.totalPages); this.products = data;},
-              err => {console.log(err); }); }
-              OnPageProduct(i) {
-            this.currentPage=i;
-            this.OnchercherProd();
-                }
-    Onchercher(form: any) {
-        this.currentPage=1;
-        this.currentKeyword=form.keyword;
-        this.OnchercherProd();}
-      OnchercherProd() {
-          this.productservice.getProductByKey(this.currentKeyword,this.currentPage, this.size).subscribe(
-              data => {this.totalPages=data[ 'page'].totalPages;
-                  this.pages=new Array<number>(this.totalPages); this.products = data;},
-              err => {console.log(err); });
+//GETTING PRODUCT USING PAGING IN ANGULAR
+    OnPageProduct(i) {
+        this.currentPage = i;
+        this.OnchercherProd();
+    }
 
-      }
+    Onchercher(form: any) {
+        this.currentPage = 1;
+        this.currentKeyword = form.keyword;
+        this.OnchercherProd();
+    }
+//SEARCH FONCTION
+    OnchercherProd() {
+        this.productservice.getProductByKey(this.currentKeyword, this.currentPage, this.size).subscribe(
+            data => {
+                this.totalPages = data['page'].totalPages;
+                this.pages = new Array<number>(this.totalPages);
+                this.products = data;
+            },
+            err => {
+                console.log(err);
+            });
+
+    }
 
     addtocart(p: any) {
         this.cartservice.add(p);
@@ -80,11 +103,11 @@ num:number=0;
     }
 
     like(p: any) {
-        
+
     }
 
     onItemLabelLoaded($event: any) {
-        
+
     }
 
     addToSummary(content: any) {

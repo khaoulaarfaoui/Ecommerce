@@ -1,34 +1,46 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CartService} from '../shared/cart.service';
-import {TokenStorageService} from '../services/token-storge.service';
+import {TokenStorageService} from '../shared/token-storge.service';
+import {NavbarService} from '../shared/navbar.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+    selector: 'app-cart',
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.css']
 })
+/*
+    CART WHERE USER CAN ADD ALL THE PRODUCT TO BUY
+ */
 export class CartComponent implements OnInit {
-  cartproducts=[];
-  isLoggedIn = false;
-
-  count=1;
-
-  constructor(private tokenStorageService: TokenStorageService, private cartService : CartService) { }
-
-  ngOnInit(): void {
-    this.cartproducts = this.cartService.getProducts();
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    console.log(this.cartproducts);
-  }
+    cartproducts = [];
+    isLoggedIn = false;
 
 
-  increment() {
-    this.count=this.count+1;
-  }
 
-  Deletecart(p: any) {
-    console.log(p.title);
-    this.cartService.delete(p);
-  }
+    constructor(public nav: NavbarService, private tokenStorageService: TokenStorageService, private cartService: CartService) {
+    }
+
+    ngOnInit(): void {
+        this.nav.show();
+        this.cartproducts = this.cartService.getProducts();
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        console.log(this.cartproducts);
+
+    }
+    total() {
+
+
+    }
+    Deletecart(p: any) {
+        console.log(p.title);
+        this.cartService.delete(p);
+    }
+    increase(p) {
+
+    console.log();
+    }
+
+    decrease(p) {
+
+    }
 }

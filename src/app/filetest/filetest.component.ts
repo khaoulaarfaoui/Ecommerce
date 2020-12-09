@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UploadFileService} from '../services/upload-file.service';
+import {UploadFileService} from '../shared/upload-file.service';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { DomSanitizer, SafeResourceUrl,  SafeHtml } from '@angular/platform-browser';
@@ -8,10 +8,13 @@ import { DomSanitizer, SafeResourceUrl,  SafeHtml } from '@angular/platform-brow
   templateUrl: './filetest.component.html',
   styleUrls: ['./filetest.component.css']
 })
+/* ************THIS COMPONENT IS JUST FOR TESTING PURPOSES
+               TESTING THE IMPORT OF IMAGE FILE ON ANGULAR
+ */
+
 export class FiletestComponent implements OnInit {
     ngOnInit() {
     }
-
     constructor(private httpClient: HttpClient) { }
 
     selectedFile: File;
@@ -50,9 +53,9 @@ export class FiletestComponent implements OnInit {
 
     }
 
-    //Gets called when the user clicks on retieve image button to get the image from back end
+    //Gets called when the user clicks on retreive image button to get the image from back end
     getImage() {
-        //Make a call to Sprinf Boot to get the Image Bytes.
+        //Make a call to SprinG Boot to get the Image Bytes.
         this.httpClient.get('http://localhost:8087/image/get/' + this.imageName)
             .subscribe(
                 res => {

@@ -1,37 +1,39 @@
 import {Component, OnInit, ElementRef, Output} from '@angular/core';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import {ServiceProductService} from '../shared/service-product.service';
 import {DisplayService} from '../shared/display.service';
 import * as EventEmitter from 'events';
 import {CartService} from '../shared/cart.service';
-import {TokenStorageService} from '../services/token-storge.service';
+import {TokenStorageService} from '../shared/token-storge.service';
+import {NavbarService} from '../shared/navbar.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
 
-    private listTitles: any[];
     location: Location;
-      mobile_menu_visible: any = 0;
-    private toggleButton: any;
-    private sidebarVisible: boolean;
+    mobile_menu_visible: any = 0;
     public products: any;
-    public size:number=6;
-    public currentPage:number=0;
+    public size: number = 6;
+    public currentPage: number = 0;
     public totalPages: number;
-    public pages:Array<number>;
+    public pages: Array<number>;
     count: number;
-    cartproducts=[];
-    private roles: string[];
+    cartproducts = [];
     isLoggedIn = false;
     showAdminBoard = false;
     showModeratorBoard = false;
     username: string;
-    constructor(private tokenStorageService: TokenStorageService,private cartService : CartService,private productservice: ServiceProductService, private displayservice: DisplayService) {
+    private listTitles: any[];
+    private toggleButton: any;
+    private sidebarVisible: boolean;
+    private roles: string[];
+    constructor(public nav: NavbarService, private tokenStorageService: TokenStorageService, private cartService: CartService, private productservice: ServiceProductService, private displayservice: DisplayService) {
 
     }
 
@@ -62,16 +64,23 @@ export class NavbarComponent implements OnInit {
         });
         this.cartproducts = this.cartService.getProducts();
     }
+
     logout() {
         this.tokenStorageService.signOut();
         window.location.reload();
     }
+
     Onchercher(form: any) {
 
-        this.productservice.getProductByKey(form.keyword,this.currentPage, this.size).subscribe(
-            data => {this.totalPages=data[ 'page'].totalPages;
-                this.pages=new Array<number>(this.totalPages); this.products = data;},
-            err => {console.log(err); });
+        this.productservice.getProductByKey(form.keyword, this.currentPage, this.size).subscribe(
+            data => {
+                this.totalPages = data['page'].totalPages;
+                this.pages = new Array<number>(this.totalPages);
+                this.products = data;
+            },
+            err => {
+                console.log(err);
+            });
 
     }
 

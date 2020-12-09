@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { TokenStorageService } from './services/token-storge.service';
+import { TokenStorageService } from './shared/token-storge.service';
 
 
 @Component({
