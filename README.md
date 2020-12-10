@@ -1,11 +1,23 @@
 THIS IS AN ECOMMERCE WEB APP BUILT WITH ANGULAR 9 AS A FRONT END AND SPRING BOOT AS BACKEND (v2.4) 
-(https://github.com/khaoulaarfaoui/Ecommerce_Backend)
+(https://github.com/khaoulaarfaoui/Ecommerce_Backend) along with MySQL. 
 
 ## Quick start
 
 Quick start options:
 
 - [Download from Github](https://github.com/khaoulaarfaoui/Ecommerce.git).
+
+
+
+## Main Fonctions: 
+
+1. Display product items added by the admin from SpringBoot backend using Postman: [POSTMAN](www.postman.com )
+2. Like Products and add them to cart 
+3. Authentification & Registration using Spring security and JWT
+4. Payment using PayU API - TEMPLATE DRIVEN FORM
+5. Contact Us Form using BAAS (Using Formspree) / GOOGLE MAPS API - MODEL DRIVEN TEMPLATE
+6. CRUD User Profile using JSON Server [JSON SERVER](www.npmjs.com/package/json-serve) - TEMPLATE DRIVEN FORM
+
 
 ## Terminal Commands
 
