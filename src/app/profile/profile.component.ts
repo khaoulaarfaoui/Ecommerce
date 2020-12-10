@@ -23,15 +23,17 @@ export class ProfileComponent implements OnInit {
     update = false;
     deletevar = false;
 
-    constructor(public nav: NavbarService, private router: Router, private userdetailsservice: UserDetailsService, private token: TokenStorageService) {
+    constructor(private tokenStorage: TokenStorageService, public nav: NavbarService, private router: Router, private userdetailsservice: UserDetailsService, private token: TokenStorageService) {
     }
 
     ngOnInit() {
         this.nav.show();
         this.currentUser = this.token.getUser();
+        console.log( "aaaaaaaaaa" +this.currentUser.id);
         this.userdetailsservice.getById(this.currentUser.id)
             .subscribe((data: Userdetails) => {
                 this.DetailUser = data;
+                console.log("bbbbbb"+this.DetailUser.FirstName);
             })
     }
 
@@ -44,7 +46,8 @@ export class ProfileComponent implements OnInit {
 
         if (window.confirm('Are you sure, you want to delete?')) {
             this.userdetailsservice.delete(this.id).subscribe(data => {
-                this.router.navigate(['/dashboard'])
+                this.tokenStorage.signOut();
+                this.router.navigate(['/home']);
             })
         }
     }

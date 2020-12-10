@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
     isSignUpFailed = false;
     errorMessage = '';
 
-    constructor(private authService: AuthService) {
+    constructor(private router: Router,private authService: AuthService) {
     }
 
     ngOnInit() {
@@ -29,6 +30,7 @@ export class RegisterComponent implements OnInit {
                 console.log(data);
                 this.isSuccessful = true;
                 this.isSignUpFailed = false;
+                this.router.navigate(['/login']);
             },
             err => {
                 this.errorMessage = err.error.message;
