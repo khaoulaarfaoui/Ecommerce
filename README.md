@@ -11,12 +11,12 @@ Quick start options:
 
 ## Main Fonctions: 
 
-1. Display product items added by the admin from SpringBoot backend using Postman: [POSTMAN](www.postman.com )
+1. Display product items added by the admin from SpringBoot backend using [POSTMAN](www.postman.com )
 2. Like Products and add them to cart 
 3. Authentification & Registration using Spring security and JWT
 4. Payment using PayU API - TEMPLATE DRIVEN FORM
 5. Contact Us Form using BAAS (Using Formspree) / GOOGLE MAPS API - MODEL DRIVEN TEMPLATE
-6. CRUD User Profile using JSON Server [JSON SERVER](www.npmjs.com/package/json-serve) - TEMPLATE DRIVEN FORM
+6. CRUD User Profile using [JSON SERVER](www.npmjs.com/package/json-serve) - TEMPLATE DRIVEN FORM
 
 
 ## Terminal Commands
